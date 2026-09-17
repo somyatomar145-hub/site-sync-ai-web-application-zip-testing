@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-navy-50: #f2f6fc;
+  --color-navy-100: #e3ecf7;
+  --color-navy-200: #c3d6ec;
+  --color-navy-300: #92b3d8;
+  --color-navy-400: #5b88bd;
+  --color-navy-500: #35659f;
+  --color-navy-600: #254d82;
+  --color-navy-700: #1c3c66;
+  --color-navy-800: #142a49;
+  --color-navy-900: #0d1e35;
+  --color-navy-950: #071426;
+
+  --color-canvas: #f5f7fb;
+  --color-line: #e5eaf2;
+
+  --shadow-card: 0 1px 2px rgba(13, 30, 53, 0.04), 0 8px 24px -12px rgba(13, 30, 53, 0.14);
+  --shadow-lift: 0 2px 4px rgba(13, 30, 53, 0.05), 0 18px 40px -18px rgba(13, 30, 53, 0.28);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-navy-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- micro animations ---------- */
+@keyframes ss-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ss-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ss-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ss-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes ss-draw {
+  from {
+    stroke-dashoffset: 1200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ss-ping {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  70%,
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@keyframes ss-flow {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 28px 0;
+  }
+}
+
+.anim-up {
+  animation: ss-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.anim-in {
+  animation: ss-fade-in 0.45s ease both;
+}
+.anim-pop {
+  animation: ss-scale-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.anim-grow {
+  transform-origin: left center;
+  animation: ss-grow-x 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.anim-draw {
+  stroke-dasharray: 1200;
+  animation: ss-draw 1.6s ease-out both;
+}
+.anim-ping {
+  animation: ss-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.flow-line {
+  background-image: linear-gradient(90deg, var(--color-navy-300) 0 8px, transparent 8px 14px);
+  background-size: 14px 2px;
+  background-repeat: repeat-x;
+  animation: ss-flow 0.9s linear infinite;
+}
+
+.flow-line-v {
+  width: 2px;
+  background-image: linear-gradient(180deg, var(--color-navy-300) 0 6px, transparent 6px 11px);
+  background-size: 2px 11px;
+  background-repeat: repeat-y;
+  animation: ss-flow-v 0.9s linear infinite;
+}
+
+@keyframes ss-flow-v {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 11px;
+  }
+}
+
+/* ---------- utilities ---------- */
+.grid-paper {
+  background-image: linear-gradient(rgba(37, 77, 130, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 77, 130, 0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.thin-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: #cdd8e6;
+  border-radius: 99px;
+}
+.thin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}
